@@ -1,8 +1,14 @@
-var uuid = require('uuid').v4
+var util = require('../lib/util')
+var validator = require('validator')
 
 class User {
-  constructor (uid = 0, uname = '', utoken = uuid()) {
-    this.uid = uid
+  constructor (uname = '', utoken = util.newToken()) {
+    if (!uname) {
+      throw new Error('User uname should not be empty!')
+    }
+    if (validator.isEmail(uname)) {
+      throw new Error('User uname shoule be a valid email address')
+    }
     this.uname = uname
     this.utoken = utoken
   }

@@ -6,8 +6,8 @@ module.exports = {
     'service': 'QQ',
     'pool': 'true',
     'auth': {
-      'user': '',
-      'pass': ''
+      'user': 'monitor@fornever.org ',
+      'pass': 'gbyolpjzwqtfbibe'
     }
   }
 }
