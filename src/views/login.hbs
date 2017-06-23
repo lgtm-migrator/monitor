@@ -1,0 +1,88 @@
+<style type="text/css">
+  body {
+    height: 100%;
+    background-image: url('https://res.cloudinary.com/digf90pwi/image/upload/e_blur:628/v1498184975/1_dvzfbv.jpg') !important;
+    background-size: cover !important;
+  }
+
+  body>.grid {
+    height: 100%;
+  }
+
+  .column {
+    max-width: 450px;
+  }
+</style>
+<script>
+  $(document).ready(function () {
+    $('.ui.form').form({
+      fields: {
+        email: {
+          identifier: 'uname',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your e-mail'
+            },
+            {
+              type: 'email',
+              prompt: 'Please enter a valid e-mail'
+            }
+          ]
+        },
+        token: {
+          identifier: 'token',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your token'
+            }
+          ]
+        }
+      }
+    });
+    $('.ui.form').ajaxForm({
+      success: function (res, status, xhr, form) {
+        // show success, and redirect monitor page
+      },
+      error: (oXhr, sStatus, sError) => {
+        // oXhr.responseJSON is response message, show dialog
+      }
+    });
+  });
+
+</script>
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui teal image header">
+      <div class="content">
+        Log-in to your monitor
+      </div>
+    </h2>
+    <form class="ui large form" action="/apis/v1/auth" method="POST">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="uname" placeholder="E-mail address">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="token" placeholder="Your token">
+          </div>
+        </div>
+        <div class="ui fluid large teal submit button">Login</div>
+      </div>
+
+      <div class="ui error message"></div>
+
+    </form>
+
+    <div class="ui message">
+      New to us? <a href="https://semantic-ui.com/examples/login.html#">Sign Up</a>
+    </div>
+  </div>
+</div>

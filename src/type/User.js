@@ -18,7 +18,7 @@ class User {
       throw new Error('User uname should not be empty!')
     }
     if (!validator.isEmail(uname)) {
-      throw new Error('User uname shoule be a valid email address')
+      throw new Error(`${uname} is not a valid email address!`)
     }
     this.uname = uname
     this.utoken = utoken
