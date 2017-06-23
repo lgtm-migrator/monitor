@@ -10,8 +10,10 @@ var logger = require('./lib/logger')('app')
 var app = express()
 
 app.use(session({ secret: 'a secret for monitor' }))
-app.set('views', path.join(__dirname, 'frontend/views'))
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
+
+app.use(require('./routes/views'))
 
 app.use(
   log4js.connectLogger(
@@ -25,8 +27,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-// no static files now
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders: res => res.setHeader('cache-control', 'max-age=691200')
+}))
 
 app.use('/apis/v1', require('./apis/apis.v1.index'))
 
