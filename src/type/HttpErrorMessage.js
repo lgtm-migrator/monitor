@@ -6,7 +6,7 @@ var Message = require('./Message')
  * @class HttpError
  * @extends {Message}
  */
-class HttpError extends Message {
+class HttpErrorMessage extends Message {
   /**
    * Creates an instance of HttpError.
    * @param {Error} err
@@ -16,7 +16,8 @@ class HttpError extends Message {
    */
   constructor (err, status = 500) {
     super(err.message, status)
+    this.err_type = err.constructor.name
   }
 }
 
-module.exports = HttpError
+module.exports = HttpErrorMessage

@@ -14,7 +14,7 @@ class Message {
   constructor (message, status = 200) {
     this.message = message
     this.status = status
-    this.type = this.constructor.name
+    this.msg_type = this.constructor.name
   }
 }
 

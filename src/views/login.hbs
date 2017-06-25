@@ -42,11 +42,13 @@
       }
     });
     $('.ui.form').ajaxForm({
-      success: (res, status, xhr, form) => {
-        // show success, and redirect monitor page
+      success: (res, status, oXhr, form) => {
+        resJSON = oXhr.responseJSON
+        sweetAlert(resJSON.type, resJSON.message, "success");
       },
       error: (oXhr, sStatus, sError) => {
-        // oXhr.responseJSON is response message, show dialog
+        resJSON = oXhr.responseJSON
+        sweetAlert(resJSON.err_type, resJSON.message, "error");
       }
     });
   });

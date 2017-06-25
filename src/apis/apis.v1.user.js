@@ -28,6 +28,17 @@ r.post('/', async (req, res, next) => {
 
 // ^ public apis ^
 
+/**
+ *
+ * @api {PUT} /apis/v1/user Update User
+ * @apiName Update User
+ * @apiGroup User
+ * @apiVersion  1.0.0
+
+ * @apiParam  {String} uname User name but a email
+ *
+ */
+
 r.put('/', async (req, res, next) => {
   try {
     var user = new User(req.session.user.uname)

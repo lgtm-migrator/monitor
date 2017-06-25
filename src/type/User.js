@@ -1,5 +1,6 @@
 var util = require('../lib/util')
 var validator = require('validator')
+var ValidateError = require('./ValidateError')
 
 /**
  * User
@@ -15,10 +16,10 @@ class User {
    */
   constructor (uname = '', utoken = util.newToken()) {
     if (!uname) {
-      throw new Error('User uname should not be empty!')
+      throw new ValidateError('User uname should not be empty !')
     }
     if (!validator.isEmail(uname)) {
-      throw new Error(`${uname} is not a valid email address!`)
+      throw new ValidateError(`${uname} is not a valid email address !`)
     }
     this.uname = uname
     this.utoken = utoken

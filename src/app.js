@@ -3,7 +3,7 @@ var session = require('express-session')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
-var HttpError = require('./type/Error')
+var HttpErrorMessage = require('./type/HttpErrorMessage')
 var log4js = require('log4js')
 var logger = require('./lib/logger')('app')
 
@@ -45,7 +45,7 @@ app.use(function (err, req, res, next) {
   if (req.app.get('env') === 'development' && err.status !== 404) {
     logger.error(err.stack)
   }
-  res.status(err.status || 500).json(new HttpError(err, err.status))
+  res.status(err.status || 500).json(new HttpErrorMessage(err, err.status))
 })
 
 module.exports = app
