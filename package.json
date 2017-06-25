@@ -2,7 +2,9 @@
   "name": "monitor",
   "version": "0.0.1",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "doc": "node_modules/.bin/apidoc -i src -o docs"
+  },
   "engines": {
     "node": "8.1.0"
   },
@@ -26,6 +28,7 @@
     "validator": "^7.1.0"
   },
   "devDependencies": {
+    "apidoc": "^0.17.6",
     "eslint": "^4.0.0",
     "eslint-config-google": "^0.8.0",
     "eslint-config-standard": "^10.2.1",

@@ -9,4 +9,8 @@ r.get('/login', (req, res) => {
   res.render('login', config)
 })
 
+r.get('/signup', (req, res) => {
+  res.render('signup', config)
+})
+
 module.exports = r

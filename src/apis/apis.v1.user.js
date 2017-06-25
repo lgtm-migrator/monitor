@@ -4,6 +4,17 @@ var db_user = require('../lib/db.user')
 var User = require('../type/User')
 var mailer = require('../lib/mailer')
 
+/**
+ *
+ * @api {POST} /apis/v1/user create a user
+ * @apiName create user
+ * @apiGroup user
+ * @apiVersion  1.0.0
+ *
+ * @apiParam  {String} uname username but a email
+ *
+ */
+
 r.post('/', async (req, res, next) => {
   try {
     var user = new User(req.body.uname)
