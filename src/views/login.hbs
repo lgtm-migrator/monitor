@@ -31,7 +31,7 @@
           ]
         },
         token: {
-          identifier: 'token',
+          identifier: 'utoken',
           rules: [
             {
               type: 'empty',
@@ -44,7 +44,8 @@
     $('.ui.form').ajaxForm({
       success: (res, status, oXhr, form) => {
         resJSON = oXhr.responseJSON
-        sweetAlert(resJSON.type, resJSON.message, "success");
+        sweetAlert(resJSON.msg_type, resJSON.message, "success")
+          .then(() => window.location.replace('/monitor'));
       },
       error: (oXhr, sStatus, sError) => {
         resJSON = oXhr.responseJSON
@@ -73,7 +74,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="token" placeholder="Your token">
+            <input type="password" name="utoken" placeholder="Your token">
           </div>
         </div>
         <div class="ui fluid large teal submit button">Login</div>

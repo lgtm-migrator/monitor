@@ -35,7 +35,8 @@
     $('.ui.form').ajaxForm({
       success: (res, status, oXhr, form) => {
         resJSON = oXhr.responseJSON
-        sweetAlert(resJSON.type, resJSON.message, "success");
+        sweetAlert(resJSON.msg_type, resJSON.message, "success")
+          .then(() => window.location.replace('/login'));
       },
       error: (oXhr, sStatus, sError) => {
         resJSON = oXhr.responseJSON
