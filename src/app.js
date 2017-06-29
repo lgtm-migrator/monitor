@@ -7,6 +7,8 @@ var HttpErrorMessage = require('./type/HttpErrorMessage')
 var log4js = require('log4js')
 var logger = require('./lib/logger')('app')
 
+require('./lib/cronjob').startCronJob()
+
 var app = express()
 
 app.use(session({ secret: 'a secret for monitor' }))
