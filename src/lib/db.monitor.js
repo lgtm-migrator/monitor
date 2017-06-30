@@ -17,7 +17,7 @@ async function allMonitorsWithStatus () {
   return db.queryAsync('SELECT * FROM `v_monitor_with_status`')
 }
 
-async function userMonitors (user) {
+async function getUserMonitors (user) {
   return db.queryAsync('SELECT * FROM `monitor` where uid = ?', [user.uid])
 }
 
@@ -26,10 +26,26 @@ async function addMonitorLog (monitorLog) {
   return db.queryAsync('INSERT INTO `monitor_log` set ?', monitorLog)
 }
 
+/**
+ *  Get Monitor Logs
+ *
+ * @param {string} mid
+ * @param {string} uid
+ * @param {number} [limit=1000]
+ * @returns
+ */
+async function getMonitorLogs (mid, uid, limit = 1000) {
+  return db.queryAsync(
+    'SELECT * FROM `v_monitor_log_with_user_and_monitor_info` where mid = ? and uid = ? limit ?',
+    [mid, uid, limit]
+  )
+}
+
 module.exports = {
   addMonitor,
   allMonitors,
   addMonitorLog,
-  userMonitors,
-  allMonitorsWithStatus
+  getUserMonitors,
+  allMonitorsWithStatus,
+  getMonitorLogs
 }

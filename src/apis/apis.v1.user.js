@@ -32,7 +32,7 @@ r.post('/', async (req, res, next) => {
  *
  * @api {PUT} /apis/v1/user Update User
  * @apiName Update User
- * @apiGroup User
+ * @apiGroup user
  * @apiVersion  1.0.0
 
  * @apiParam  {String} uname User name but a email

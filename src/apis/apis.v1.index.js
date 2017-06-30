@@ -8,6 +8,18 @@ router.get('/', function (req, res, next) {
   res.json(new Message('Monitor Service powered by Node JS'))
 })
 
+/**
+ *
+ * @api {POST} /api/v1/auth Authorize
+ * @apiName Authorize
+ * @apiGroup home
+ * @apiVersion  1.0.0
+ *
+ * @apiParam  {String} uname user email
+ * @apiParam  {String} utoken user token
+ *
+ */
+
 router.post('/auth', async function (req, res, next) {
   try {
     var user = new User(req.body.uname, req.body.utoken)
