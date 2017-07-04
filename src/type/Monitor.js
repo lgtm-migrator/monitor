@@ -1,6 +1,13 @@
 var ValidateError = require('./ValidateError')
 
 class Monitor {
+  /**
+   * Creates an instance of Monitor.
+   * @param {number} uid
+   * @param {string} type
+   * @param {string} target
+   * @memberof Monitor
+   */
   constructor (uid, type, target) {
     if (!uid) {
       throw new ValidateError('Monitor uid should not be empty !')
