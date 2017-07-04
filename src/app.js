@@ -6,32 +6,38 @@ var bodyParser = require('body-parser')
 var HttpErrorMessage = require('./type/HttpErrorMessage')
 var log4js = require('log4js')
 var logger = require('./lib/logger')('app')
+var MysqlSessionStore = require('express-mysql-session')
+var mysqlConnection = require('./lib/db').pool
 
 require('./lib/cronjob').startCronJob()
 
 var app = express()
 
-app.use(session({ secret: 'a secret for monitor' }))
+app.use(
+  session({
+    secret: 'a secret for monitor',
+    store: new MysqlSessionStore({}, mysqlConnection)
+  })
+)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'hbs')
 
 app.use(require('./routes/views'))
 
 app.use(
-  log4js.connectLogger(
-    require('./lib/logger')('access'),
-    {
-      format: ':response-timems\t:status :method :url'
-    }
-  )
+  log4js.connectLogger(require('./lib/logger')('access'), {
+    format: ':response-timems\t:status :method :url'
+  })
 )
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use(express.static(path.join(__dirname, 'public'), {
-  setHeaders: res => res.setHeader('cache-control', 'max-age=691200')
-}))
+app.use(
+  express.static(path.join(__dirname, 'public'), {
+    setHeaders: res => res.setHeader('cache-control', 'max-age=691200')
+  })
+)
 
 app.use('/apis/v1', require('./apis/apis.v1.index'))
 

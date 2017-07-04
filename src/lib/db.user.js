@@ -1,4 +1,4 @@
-var db = require('./db')
+var db = require('./db').poolAsync
 
 async function addUser (user) {
   return db.queryAsync('INSERT INTO `user` set ?', user)

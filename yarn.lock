@@ -376,15 +376,15 @@ debug@2.6.7:
   dependencies:
     ms "2.0.0"
 
-debug@^0.7.2:
-  version "0.7.4"
-  resolved "http://registry.npm.taobao.org/debug/download/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
-
-debug@^2.2.0, debug@^2.6.8, debug@~2.6.0:
+debug@2.6.8, debug@^2.2.0, debug@^2.6.8, debug@~2.6.0:
   version "2.6.8"
   resolved "http://registry.npm.taobao.org/debug/download/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
     ms "2.0.0"
+
+debug@^0.7.2:
+  version "0.7.4"
+  resolved "http://registry.npm.taobao.org/debug/download/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
 decamelize@^1.0.0:
   version "1.2.0"
@@ -410,7 +410,7 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/delayed-stream/download/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
 
-depd@~1.1.0:
+depd@1.1.0, depd@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/depd/download/depd-1.1.0.tgz#e1bd82c6aab6ced965b97b88b17ed3e528ca18c3"
 
@@ -603,7 +603,16 @@ etag@~1.7.0:
   version "1.7.0"
   resolved "http://registry.npm.taobao.org/etag/download/etag-1.7.0.tgz#03d30b5f67dd6e632d2945d30d6652731a34d5d8"
 
-express-session@^1.15.3:
+express-mysql-session@^1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/express-mysql-session/download/express-mysql-session-1.2.1.tgz#f3724b5382f82f3c0d4090fb9016c4acc7c768d7"
+  dependencies:
+    debug "2.6.8"
+    depd "1.1.0"
+    express-session "1.15.3"
+    mysql "2.13.0"
+
+express-session@1.15.3, express-session@^1.15.3:
   version "1.15.3"
   resolved "http://registry.npm.taobao.org/express-session/download/express-session-1.15.3.tgz#db545f0435a7b1b228ae02da8197f65141735c67"
   dependencies:
@@ -1226,7 +1235,7 @@ mysql-as-promised@^0.2.2:
   dependencies:
     mysql "^2.11.1"
 
-mysql@^2.11.1:
+mysql@2.13.0, mysql@^2.11.1:
   version "2.13.0"
   resolved "http://registry.npm.taobao.org/mysql/download/mysql-2.13.0.tgz#998f1f8ca46e2e3dd7149ce982413653986aae47"
   dependencies:

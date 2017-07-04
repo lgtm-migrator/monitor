@@ -146,12 +146,18 @@
       <a class="active item" href="/">Home</a>
       <a class="item">Monitor</a>
       <div class="right menu">
+        {{#unless session.user}}
         <div class="item">
           <a class="ui button" href="/login">Log in</a>
         </div>
         <div class="item">
           <a class="ui primary button" href="/signup">Sign Up</a>
         </div>
+        {{/unless}} {{#if session.user}}
+        <div class="item">
+          <a class="ui primary button" href="/logout">Log Out</a>
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -166,9 +172,12 @@
           <a class="active item" href="/">Home</a>
           <a class="item">Monitor</a>
           <div class="right item">
+            {{#unless session.user}}
             <a class="ui inverted button" href="/login">Log in</a>
-            <a class="ui inverted button" href="/signup">Sign Up</a>
+            <a class="ui inverted button" href="/signup">Sign Up</a> {{/unless}} {{#if session.user}}
+            <a class="ui inverted button" href="/logout">Log out</a> {{/if}}
           </div>
+
         </div>
       </div>
       {{{body}}}

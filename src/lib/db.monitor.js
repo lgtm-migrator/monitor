@@ -1,4 +1,4 @@
-var db = require('./db')
+var db = require('./db').poolAsync
 
 async function addMonitor (monitor) {
   return db.queryAsync('INSERT INTO `monitor` set ?', monitor)
