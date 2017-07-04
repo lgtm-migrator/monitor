@@ -1,7 +1,6 @@
 var r = require('express').Router()
 var dbMonitor = require('../lib/db.monitor')
 var DataMessage = require('../type/DataMessage')
-var User = require('../type/User')
 var Message = require('../type/Message')
 var Monitor = require('../type/Monitor')
 
@@ -9,9 +8,9 @@ var Monitor = require('../type/Monitor')
 
 r.get('/', async (req, res, next) => {
   try {
-    var rs = await dbMonitor.getUserMonitorsWithStatus(
-      new User(req.session.user.uid)
-    )
+    var rs = await dbMonitor.getUserMonitorsWithStatus({
+      uid: req.session.user.uid
+    })
     res.json(new DataMessage(rs))
   } catch (error) {
     next(error)
@@ -42,9 +41,7 @@ r.get('/:id', async (req, res, next) => {
   try {
     var mid = parseInt(req.params['id'])
     res.json(
-      new Message(
-        (await dbMonitor.getUserMonitor(mid, req.session.user.uid))
-      )
+      new Message((await dbMonitor.getUserMonitor(mid, req.session.user.uid)))
     )
   } catch (error) {
     next(error)
@@ -90,10 +87,10 @@ r.delete('/:id', async (req, res, next) => {
  * @apiParam  {String} limit log limit, default is 1000
  *
  */
-r.get('/log', async (req, res, next) => {
+r.get('/:mid/logs', async (req, res, next) => {
   try {
     var uid = req.session.user.uid
-    var mid = req.query.mid
+    var mid = req.params['mid']
     var limit = req.query.limit
     var logs = await dbMonitor.getMonitorLogs(mid, uid, limit)
     res.json(new DataMessage(logs))
