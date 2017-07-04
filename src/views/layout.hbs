@@ -89,7 +89,7 @@
     display: none;
   }
 
-  @media only screen and (max-width: 700px) {
+  @media only (max-width: 700px) {
     .ui.fixed.menu {
       display: none !important;
     }
@@ -130,7 +130,17 @@
 
     // create sidebar and attach to menu open
     $('.ui.sidebar').sidebar('attach events', '.toc.item');
+    $('#logoutBtn').click(e => {
+      $.post("/apis/v1/logout")
+        .done(r => {
+          sweetAlert(r.msgType, r.message, "success")
+            .then(() => window.location.replace('/'));
+        })
+        .fail(r => {
+          sweetAlert(r.msgType, r.message, "error")
+        })
 
+    })
   });
 
 </script>
@@ -139,27 +149,6 @@
   <div class="ui vertical inverted sidebar menu left">
     <a class="active item" href="/">Home</a>
     <a class="item">Monitor</a>
-  </div>
-
-  <div class="ui large top fixed hidden menu">
-    <div class="ui container">
-      <a class="active item" href="/">Home</a>
-      <a class="item">Monitor</a>
-      <div class="right menu">
-        {{#unless session.user}}
-        <div class="item">
-          <a class="ui button" href="/login">Log in</a>
-        </div>
-        <div class="item">
-          <a class="ui primary button" href="/signup">Sign Up</a>
-        </div>
-        {{/unless}} {{#if session.user}}
-        <div class="item">
-          <a class="ui primary button" href="/logout">Log Out</a>
-        </div>
-        {{/if}}
-      </div>
-    </div>
   </div>
 
   <div class="pusher" style="height: 100%">
@@ -175,9 +164,8 @@
             {{#unless session.user}}
             <a class="ui inverted button" href="/login">Log in</a>
             <a class="ui inverted button" href="/signup">Sign Up</a> {{/unless}} {{#if session.user}}
-            <a class="ui inverted button" href="/logout">Log out</a> {{/if}}
+            <a id="logoutBtn" class="ui inverted button">Log out</a> {{/if}}
           </div>
-
         </div>
       </div>
       {{{body}}}

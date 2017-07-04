@@ -48,7 +48,7 @@ router.post('/logout', async function (req, res, next) {
   try {
     if (req.session.user) {
       res.json(new Message(`${req.session.user.uname} logged out !`))
-      delete req.session.user
+      req.session.destroy()
     } else {
       next()
     }
