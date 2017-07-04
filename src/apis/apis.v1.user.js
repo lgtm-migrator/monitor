@@ -1,6 +1,6 @@
 var r = require('express').Router()
 var Message = require('../type/Message')
-var db_user = require('../lib/db.user')
+var dbUser = require('../lib/db.user')
 var User = require('../type/User')
 var mailer = require('../lib/mailer')
 
@@ -18,8 +18,8 @@ var mailer = require('../lib/mailer')
 r.post('/', async (req, res, next) => {
   try {
     var user = new User(req.body.uname)
-    await db_user.addUser(user)
-    await mailer.send_new_token(user.uname, user.utoken)
+    await dbUser.addUser(user)
+    await mailer.sendNewToken(user.uname, user.utoken)
     res.json(new Message('User created, and the token will be sent to your mailbox as soon'))
   } catch (error) {
     next(error)
@@ -42,8 +42,8 @@ r.post('/', async (req, res, next) => {
 r.put('/', async (req, res, next) => {
   try {
     var user = new User(req.session.user.uname)
-    await db_user.updateUser(user)
-    await mailer.send_new_token(user.uname, user.utoken)
+    await dbUser.updateUser(user)
+    await mailer.sendNewToken(user.uname, user.utoken)
     res.json(new Message('User updated, and new token will be sent to your mailbox as soon'))
   } catch (error) {
     next(error)

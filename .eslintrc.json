@@ -8,6 +8,6 @@
         "mocha": true
     },
     "rules": {
-        "camelcase": "off"
+        "camelcase": 1
     }
 }

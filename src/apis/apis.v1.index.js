@@ -23,9 +23,9 @@ router.get('/', function (req, res, next) {
 router.post('/auth', async function (req, res, next) {
   try {
     var user = new User(req.body.uname, req.body.utoken)
-    var db_user = await dbUser.findUser(user)
-    if (db_user) {
-      req.session.user = db_user
+    var findedUser = await dbUser.findUser(user)
+    if (findedUser) {
+      req.session.user = findedUser
       res.json(new Message(`${user.uname} have been authorized !`))
     } else {
       next()

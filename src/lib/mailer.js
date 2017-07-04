@@ -1,11 +1,11 @@
-var node_mailer = require('nodemailer')
+var nodeMailer = require('nodemailer')
 var config = require('../config')
 var bluebird = require('bluebird')
 var transpoert = bluebird.promisifyAll(
-  node_mailer.createTransport(config.MAIL)
+  nodeMailer.createTransport(config.MAIL)
 )
 
-async function send_mail (to, title, content, html = '') {
+async function sendMail (to, title, content, html = '') {
   return transpoert.sendMailAsync({
     from: `Monitor <${config.MAIL.auth.user}>`,
     to: to,
@@ -15,8 +15,8 @@ async function send_mail (to, title, content, html = '') {
   })
 }
 
-async function send_new_token (to, token) {
-  return send_mail(
+async function sendNewToken (to, token) {
+  return sendMail(
     to,
     'Monitor Token',
     '',
@@ -24,8 +24,8 @@ async function send_new_token (to, token) {
   )
 }
 
-async function send_down_mail (to, monitor) {
-  return send_mail(
+async function sendDownMail (to, monitor) {
+  return sendMail(
     to,
     'Monitor Target Down Message',
     '',
@@ -33,8 +33,8 @@ async function send_down_mail (to, monitor) {
   )
 }
 
-async function send_restore_mail (to, monitor) {
-  return send_mail(
+async function sendRestoreMail (to, monitor) {
+  return sendMail(
     to,
     'Monitor Target Restored Message',
     '',
@@ -43,8 +43,8 @@ async function send_restore_mail (to, monitor) {
 }
 
 module.exports = {
-  send_mail,
-  send_new_token,
-  send_down_mail,
-  send_restore_mail
+  sendMail,
+  sendNewToken,
+  sendDownMail,
+  sendRestoreMail
 }
