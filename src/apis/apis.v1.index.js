@@ -35,6 +35,28 @@ router.post('/auth', async function (req, res, next) {
   }
 })
 
+/**
+ *
+ * @api {POST} /api/v1/logout Logout
+ * @apiName Logout
+ * @apiGroup home
+ * @apiVersion  1.0.0
+ *
+ */
+
+router.post('/logout', async function (req, res, next) {
+  try {
+    if (req.session.user) {
+      res.json(new Message(`${req.session.user.uname} logged out !`))
+      delete req.session.user
+    } else {
+      next()
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.use('/user', require('./apis.v1.user'))
 
 router.use('/monitor', require('./apis.v1.monitor'))
