@@ -20,7 +20,7 @@ async function logAllMonitors () {
             timeout: 30 * 1000,
             resolveWithFullResponse: true
           })
-          if (m.latest_is_success === '0') {
+          if (m.latest_is_success === 0) {
             mailer.sendRestoreMail(m.uname, m)
           }
           return dbMonitor.addMonitorLog(
@@ -34,10 +34,10 @@ async function logAllMonitors () {
           break
       }
     } catch (error) {
-      if (m.latest_is_success === '1') {
+      if (m.latest_is_success === 1) {
         mailer.sendDownMail(m.uname, m)
       }
-      logger.debug(`GET ${m.target}: ${error.message}`)
+      logger.error(`GET ${m.target}: ${error.message}`)
       return dbMonitor.addMonitorLog(new MonitorLog(m.mid, false, 30 * 1000))
     }
   })

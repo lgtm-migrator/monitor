@@ -16,7 +16,8 @@ var app = express()
 app.use(
   session({
     secret: 'a secret for monitor',
-    store: new MysqlSessionStore({}, mysqlConnection)
+    store: new MysqlSessionStore({}, mysqlConnection),
+    saveUninitialized: true
   })
 )
 app.set('views', path.join(__dirname, 'views'))
