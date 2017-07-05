@@ -16,7 +16,7 @@ class HttpErrorMessage extends Message {
    */
   constructor (err, status = 500) {
     super(err.message, status)
-    this.err_type = err.constructor.name
+    this.errType = err.constructor.name
   }
 }
 

@@ -34,7 +34,7 @@
       },
       error: (oXhr, sStatus, sError) => {
         resJSON = oXhr.responseJSON
-        sweetAlert(resJSON.err_type, resJSON.message, "error");
+        sweetAlert(resJSON.errType, resJSON.message, "error");
       }
     });
   });
