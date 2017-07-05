@@ -6,8 +6,8 @@ var mailer = require('../lib/mailer')
 
 /**
  *
- * @api {POST} /apis/v1/user create a user
- * @apiName create user
+ * @api {POST} /apis/v1/user Create user
+ * @apiName Create user
  * @apiGroup user
  * @apiVersion  1.0.0
  *

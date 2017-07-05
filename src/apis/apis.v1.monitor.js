@@ -128,8 +128,8 @@ r.delete('/:id', async (req, res, next) => {
 
 /**
  *
- * @api {GET} /api/v1/monitor/:mid/log Get monitor logs
- * @apiName getMonitorLogs
+ * @api {GET} /apis/v1/monitor/:mid/log Get monitor logs
+ * @apiName Get monitor logs
  * @apiGroup monitorlog
  * @apiVersion  1.0.0
  *
