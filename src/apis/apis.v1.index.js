@@ -4,13 +4,9 @@ var Message = require('../type/Message')
 var User = require('../type/User')
 var dbUser = require('../lib/db.user')
 
-router.get('/', function (req, res, next) {
-  res.json(new Message('Monitor Service powered by Node JS'))
-})
-
 /**
  *
- * @api {POST} /api/v1/auth Authorize
+ * @api {POST} /apis/v1/auth Authorize
  * @apiName Authorize
  * @apiGroup home
  * @apiVersion  1.0.0
@@ -37,7 +33,7 @@ router.post('/auth', async function (req, res, next) {
 
 /**
  *
- * @api {POST} /api/v1/logout Logout
+ * @api {POST} /apis/v1/logout Logout
  * @apiName Logout
  * @apiGroup home
  * @apiVersion  1.0.0

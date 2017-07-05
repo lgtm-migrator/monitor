@@ -6,6 +6,15 @@ var Monitor = require('../type/Monitor')
 
 // ^ public ^
 
+/**
+ *
+ * @api {GET} /apis/v1/monitor Get Current User Monitors
+ * @apiName Get Current User Monitors
+ * @apiGroup monitor
+ * @apiVersion  1.0.0
+ *
+ */
+
 r.get('/', async (req, res, next) => {
   try {
     var rs = await dbMonitor.getUserMonitorsWithStatus({
@@ -16,6 +25,19 @@ r.get('/', async (req, res, next) => {
     next(error)
   }
 })
+
+/**
+ *
+ * @api {POST} /apis/v1/monitor Create Monitor
+ * @apiName Create Monitor
+ * @apiGroup monitor
+ * @apiVersion  1.0.0
+ *
+ *
+ * @apiParam {string} type monitor type, HTTP or TCP
+ * @apiParam {string} target monitor target, a uri or host:port string
+ *
+ */
 
 r.post('/', async (req, res, next) => {
   try {
@@ -30,12 +52,16 @@ r.post('/', async (req, res, next) => {
   }
 })
 
-r.put('/', async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error)
-  }
-})
+/**
+ *
+ * @api {GET} /apis/v1/monitor/:mid Get Specific Monitor
+ * @apiName Get Specific Monitor
+ * @apiGroup monitor
+ * @apiVersion  1.0.0
+ *
+ *
+ * @apiParam  {String} mid monitor id
+ */
 
 r.get('/:id', async (req, res, next) => {
   try {
@@ -47,6 +73,20 @@ r.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+/**
+ *
+ * @api {POST} /apis/v1/monitor/:mid Upsert Monitor
+ * @apiName Upsert Monitor
+ * @apiGroup monitor
+ * @apiVersion  1.0.0
+ * @apiDescription update a monitor, create when it's not exist
+ *
+ * @apiParam  {String} mid minitor id
+ * @apiParam {string} type monitor type, HTTP or TCP
+ * @apiParam {string} target monitor target, a uri or host:port string
+ *
+ */
 
 r.post('/:id', async (req, res, next) => {
   try {
@@ -61,6 +101,17 @@ r.post('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+/**
+ *
+ * @api {DELETE} /apis/v1/monitor/:mid Delete Specific Monitor
+ * @apiName Delete Specific Monitor
+ * @apiGroup monitor
+ * @apiVersion  1.0.0
+ *
+ *
+ * @apiParam  {String} mid monitor id
+ */
 
 r.delete('/:id', async (req, res, next) => {
   try {
@@ -77,14 +128,14 @@ r.delete('/:id', async (req, res, next) => {
 
 /**
  *
- * @api {GET} /api/v1/monitor/log Get monitor logs
+ * @api {GET} /api/v1/monitor/:mid/log Get monitor logs
  * @apiName getMonitorLogs
- * @apiGroup monitor
+ * @apiGroup monitorlog
  * @apiVersion  1.0.0
  *
  *
- * @apiParam  {String} mid monitor.mid
- * @apiParam  {String} limit log limit, default is 1000
+ * @apiParam  {number} mid monitor mid
+ * @apiParam  {String} limit=1000 logs limit
  *
  */
 r.get('/:mid/logs', async (req, res, next) => {
